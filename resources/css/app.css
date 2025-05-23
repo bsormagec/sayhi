@@ -8,74 +8,76 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.87 0 0);
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
+    /* U of T Brand Colors - Light Theme */
+    --background: oklch(0.98 0 0); /* Light neutral background */
+    --foreground: oklch(0.205 0 0); /* U of T Blue for text */
+    --card: oklch(1 0 0); /* Pure white for cards */
+    --card-foreground: oklch(0.205 0 0); /* U of T Blue for card text */
+    --popover: oklch(1 0 0); /* Pure white for popovers */
+    --popover-foreground: oklch(0.205 0 0); /* U of T Blue for popover text */
+    --primary: oklch(0.35 0.15 250); /* U of T Blue (Pantone 655) - #1E3765 */
+    --primary-foreground: oklch(1 0 0); /* White text on U of T Blue */
+    --secondary: oklch(0.92 0.01 250); /* Light blue-gray for secondary elements */
+    --secondary-foreground: oklch(0.205 0 0); /* U of T Blue for secondary text */
+    --muted: oklch(0.95 0.005 250); /* Very light blue-gray for muted elements */
+    --muted-foreground: oklch(0.45 0.05 250); /* Muted blue-gray for subtle text */
+    --accent: oklch(0.55 0.15 200); /* U of T secondary blue (Pantone 633) - #007FA3 */
+    --accent-foreground: oklch(1 0 0); /* White text on accent */
+    --destructive: oklch(0.55 0.22 25); /* U of T Warm Red - #DC4633 */
+    --destructive-foreground: oklch(1 0 0); /* White text on destructive */
+    --border: oklch(0.88 0.01 250); /* Light blue-gray borders */
+    --input: oklch(0.92 0.01 250); /* Light blue-gray input backgrounds */
+    --ring: oklch(0.35 0.15 250); /* U of T Blue for focus rings */
+    --chart-1: oklch(0.35 0.15 250); /* U of T Blue */
+    --chart-2: oklch(0.55 0.15 200); /* U of T secondary blue */
+    --chart-3: oklch(0.45 0.18 300); /* U of T purple (Pantone 2613) */
+    --chart-4: oklch(0.65 0.15 160); /* U of T teal (Pantone 3285) */
+    --chart-5: oklch(0.75 0.20 85); /* U of T yellow (Pantone 7406) */
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.87 0 0);
+    --sidebar: oklch(0.96 0.005 250); /* Very light blue-gray for sidebar */
+    --sidebar-foreground: oklch(0.205 0 0); /* U of T Blue for sidebar text */
+    --sidebar-primary: oklch(0.35 0.15 250); /* U of T Blue for sidebar primary */
+    --sidebar-primary-foreground: oklch(1 0 0); /* White text on sidebar primary */
+    --sidebar-accent: oklch(0.92 0.01 250); /* Light blue-gray for sidebar accent */
+    --sidebar-accent-foreground: oklch(0.205 0 0); /* U of T Blue for sidebar accent text */
+    --sidebar-border: oklch(0.88 0.01 250); /* Light blue-gray for sidebar borders */
+    --sidebar-ring: oklch(0.35 0.15 250); /* U of T Blue for sidebar focus rings */
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.145 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.145 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.637 0.237 25.331);
-    --border: oklch(0.269 0 0);
-    --input: oklch(0.269 0 0);
-    --ring: oklch(0.439 0 0);
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.985 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(0.269 0 0);
-    --sidebar-ring: oklch(0.439 0 0);
+    /* U of T Brand Colors - Dark Theme */
+    --background: oklch(0.15 0.02 250); /* Dark blue-gray background */
+    --foreground: oklch(0.95 0.005 250); /* Light text */
+    --card: oklch(0.18 0.02 250); /* Slightly lighter dark blue-gray for cards */
+    --card-foreground: oklch(0.95 0.005 250); /* Light text on cards */
+    --popover: oklch(0.18 0.02 250); /* Dark blue-gray for popovers */
+    --popover-foreground: oklch(0.95 0.005 250); /* Light text on popovers */
+    --primary: oklch(0.65 0.15 250); /* Lighter U of T Blue for dark theme */
+    --primary-foreground: oklch(0.15 0.02 250); /* Dark text on primary */
+    --secondary: oklch(0.25 0.03 250); /* Dark blue-gray for secondary */
+    --secondary-foreground: oklch(0.85 0.01 250); /* Light text on secondary */
+    --muted: oklch(0.22 0.02 250); /* Muted dark blue-gray */
+    --muted-foreground: oklch(0.65 0.05 250); /* Muted light text */
+    --accent: oklch(0.65 0.15 200); /* Lighter secondary blue for dark theme */
+    --accent-foreground: oklch(0.15 0.02 250); /* Dark text on accent */
+    --destructive: oklch(0.65 0.22 25); /* Lighter warm red for dark theme */
+    --destructive-foreground: oklch(0.95 0.005 250); /* Light text on destructive */
+    --border: oklch(0.25 0.03 250); /* Dark blue-gray borders */
+    --input: oklch(0.22 0.02 250); /* Dark blue-gray input backgrounds */
+    --ring: oklch(0.65 0.15 250); /* Lighter U of T Blue for focus rings */
+    --chart-1: oklch(0.65 0.15 250); /* Lighter U of T Blue */
+    --chart-2: oklch(0.75 0.15 200); /* Lighter secondary blue */
+    --chart-3: oklch(0.65 0.18 300); /* Lighter purple */
+    --chart-4: oklch(0.75 0.15 160); /* Lighter teal */
+    --chart-5: oklch(0.85 0.20 85); /* Lighter yellow */
+    --sidebar: oklch(0.12 0.02 250); /* Very dark blue-gray for sidebar */
+    --sidebar-foreground: oklch(0.95 0.005 250); /* Light text for sidebar */
+    --sidebar-primary: oklch(0.65 0.15 250); /* Lighter U of T Blue for sidebar primary */
+    --sidebar-primary-foreground: oklch(0.15 0.02 250); /* Dark text on sidebar primary */
+    --sidebar-accent: oklch(0.25 0.03 250); /* Dark blue-gray for sidebar accent */
+    --sidebar-accent-foreground: oklch(0.85 0.01 250); /* Light text on sidebar accent */
+    --sidebar-border: oklch(0.25 0.03 250); /* Dark blue-gray for sidebar borders */
+    --sidebar-ring: oklch(0.65 0.15 250); /* Lighter U of T Blue for sidebar focus rings */
 }
 
 @theme inline {
