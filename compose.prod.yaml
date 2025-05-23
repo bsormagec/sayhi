@@ -1,0 +1,140 @@
+x-logging: &default-logging
+  driver: 'json-file'
+  options:
+    max-size: "50m"
+    max-file: 6
+
+x-network: &default-network
+  internal:
+
+x-base: &base
+  depends_on:
+    mariadb:
+      condition: service_healthy
+    valkey:
+      condition: service_healthy
+  image: ${IMAGE_NAME:-app}:latest
+  user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+  ulimits:
+    nofile:
+      soft: 20000
+      hard: 40000
+  security_opt:
+    - no-new-privileges:true
+  volumes:
+    - 'app_public:/app/storage/app/public'
+    - 'app_logs:/app/storage/logs'
+    - 'app_cache:/app/bootstrap/cache'
+  logging: *default-logging
+  restart: always
+
+services:
+  app:
+    <<: *base
+    build:
+      args:
+        APP_ENV: 'production' # to load .env.production
+        WWWUSER: ${HOST_UID:-1000}
+        WWWGROUP: ${HOST_GID:-1000}
+    environment:
+      INERTIA_SSR: true
+      SERVER_NAME: :80
+    networks:
+      - internal
+      - traefik
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "localhost:8000/up" ]
+      start_period: 5s
+      interval: 10s
+      retries: 12
+    labels:
+      traefik.enable: true
+      traefik.http.routers.pingcrm.rule: Host(`${APP_HOST}`)
+      traefik.http.services.pingcrm.loadbalancer.server.port: 8000
+
+  horizon:
+    <<: *base
+    environment:
+      CONTAINER_MODE: horizon
+    networks: *default-network
+    depends_on:
+      app:
+        condition: service_healthy
+
+  reverb:
+    <<: *base
+    environment:
+      CONTAINER_MODE: reverb
+    networks: *default-network
+    depends_on:
+      app:
+        condition: service_healthy
+
+  scheduler:
+    <<: *base
+    environment:
+      CONTAINER_MODE: scheduler
+    networks: *default-network
+    depends_on:
+      app:
+        condition: service_healthy
+
+  valkey:
+    image: valkey/valkey:alpine
+    ulimits:
+      nofile:
+        soft: 20000
+        hard: 40000
+    command: [ "valkey-server", "--requirepass", "${REDIS_PASSWORD:-cipassword}", "--maxmemory", "2gb" ]
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - 'stack-valkey:/data'
+    logging: *default-logging
+    networks: *default-network
+    healthcheck:
+      test: [ "CMD", "valkey-cli", "ping" ]
+      retries: 3
+      timeout: 5s
+    restart: always
+
+  mariadb:
+    image: mariadb:11.4
+    ulimits:
+      nofile:
+        soft: 20000
+        hard: 40000
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: "1"
+      MARIADB_DATABASE: "${DB_DATABASE:-cidatabase}"
+      MARIADB_USER: "${DB_USERNAME:-ciuser}"
+      MARIADB_PASSWORD: "${DB_PASSWORD:-cipassword}"
+    volumes:
+      - 'mariadb_data:/var/lib/mysql'
+      - 'mariadb_custom_conf:/etc/mysql/conf.d'
+      - 'mariadb_shared:/shared'
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: always
+    networks: *default-network
+    logging: *default-logging
+
+networks:
+  internal:
+  traefik:
+    external: true
+
+volumes:
+  app_public:
+  app_logs:
+  app_cache:
+  stack-valkey:
+  mariadb_data:
+  mariadb_custom_conf:
+  mariadb_shared:
