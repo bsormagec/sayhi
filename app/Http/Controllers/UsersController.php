@@ -20,11 +20,11 @@ final class UsersController extends Controller
     public function index()
     {
         return Inertia::render('users/index', [
-            'filters' => Request::all(['search', 'role', 'trashed']),
+            'filters' => Request::all(['search', 'trashed']),
             'users' => new UserCollection(
-                Auth::user()->account->users()
+                User::query()
                     ->orderByName()
-                    ->filter(Request::only(['search', 'role', 'trashed']))
+                    ->filter(Request::only(['search', 'trashed']))
                     ->paginate()
                     ->withQueryString()
             ),
@@ -38,7 +38,7 @@ final class UsersController extends Controller
 
     public function store(UserRequest $request): RedirectResponse
     {
-        Auth::user()->account->users()->create($request->validated());
+        User::create($request->validated());
 
         return Redirect::route('users.index')->with('success', translate_with_gender('created', 'User'));
     }

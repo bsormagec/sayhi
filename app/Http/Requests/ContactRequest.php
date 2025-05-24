@@ -31,7 +31,7 @@ final class ContactRequest extends FormRequest
             'last_name' => ['required', 'max:25'],
             'organization_id' => [
                 'nullable',
-                Rule::exists('organizations', 'id')->where(fn ($query) => $query->where('account_id', Auth::user()->account_id)),
+                Rule::exists('organizations', 'id'),
             ],
             'email' => ['nullable', 'max:50', 'email'],
             'phone' => ['nullable', 'max:50'],

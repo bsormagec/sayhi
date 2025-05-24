@@ -54,7 +54,7 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::create
-* @see app/Http/Controllers/OrganizationsController.php:33
+* @see app/Http/Controllers/OrganizationsController.php:32
 * @route '/organizations/create'
 */
 export const create = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -72,7 +72,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::create
-* @see app/Http/Controllers/OrganizationsController.php:33
+* @see app/Http/Controllers/OrganizationsController.php:32
 * @route '/organizations/create'
 */
 create.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -81,7 +81,7 @@ create.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::create
-* @see app/Http/Controllers/OrganizationsController.php:33
+* @see app/Http/Controllers/OrganizationsController.php:32
 * @route '/organizations/create'
 */
 create.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -94,7 +94,7 @@ create.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::create
-* @see app/Http/Controllers/OrganizationsController.php:33
+* @see app/Http/Controllers/OrganizationsController.php:32
 * @route '/organizations/create'
 */
 create.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -107,7 +107,7 @@ create.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::store
-* @see app/Http/Controllers/OrganizationsController.php:38
+* @see app/Http/Controllers/OrganizationsController.php:37
 * @route '/organizations'
 */
 export const store = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -125,7 +125,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::store
-* @see app/Http/Controllers/OrganizationsController.php:38
+* @see app/Http/Controllers/OrganizationsController.php:37
 * @route '/organizations'
 */
 store.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -134,7 +134,7 @@ store.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::store
-* @see app/Http/Controllers/OrganizationsController.php:38
+* @see app/Http/Controllers/OrganizationsController.php:37
 * @route '/organizations'
 */
 store.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -147,7 +147,7 @@ store.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::edit
-* @see app/Http/Controllers/OrganizationsController.php:45
+* @see app/Http/Controllers/OrganizationsController.php:44
 * @route '/organizations/{organization}/edit'
 */
 export const edit = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -165,7 +165,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::edit
-* @see app/Http/Controllers/OrganizationsController.php:45
+* @see app/Http/Controllers/OrganizationsController.php:44
 * @route '/organizations/{organization}/edit'
 */
 edit.url = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -196,7 +196,7 @@ edit.url = (args: { organization: number | { id: number } } | [organization: num
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::edit
-* @see app/Http/Controllers/OrganizationsController.php:45
+* @see app/Http/Controllers/OrganizationsController.php:44
 * @route '/organizations/{organization}/edit'
 */
 edit.get = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -209,7 +209,7 @@ edit.get = (args: { organization: number | { id: number } } | [organization: num
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::edit
-* @see app/Http/Controllers/OrganizationsController.php:45
+* @see app/Http/Controllers/OrganizationsController.php:44
 * @route '/organizations/{organization}/edit'
 */
 edit.head = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -222,7 +222,7 @@ edit.head = (args: { organization: number | { id: number } } | [organization: nu
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::update
-* @see app/Http/Controllers/OrganizationsController.php:52
+* @see app/Http/Controllers/OrganizationsController.php:51
 * @route '/organizations/{organization}'
 */
 export const update = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -240,7 +240,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::update
-* @see app/Http/Controllers/OrganizationsController.php:52
+* @see app/Http/Controllers/OrganizationsController.php:51
 * @route '/organizations/{organization}'
 */
 update.url = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -271,7 +271,7 @@ update.url = (args: { organization: number | { id: number } } | [organization: n
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::update
-* @see app/Http/Controllers/OrganizationsController.php:52
+* @see app/Http/Controllers/OrganizationsController.php:51
 * @route '/organizations/{organization}'
 */
 update.put = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -284,7 +284,7 @@ update.put = (args: { organization: number | { id: number } } | [organization: n
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::update
-* @see app/Http/Controllers/OrganizationsController.php:52
+* @see app/Http/Controllers/OrganizationsController.php:51
 * @route '/organizations/{organization}'
 */
 update.patch = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -297,7 +297,7 @@ update.patch = (args: { organization: number | { id: number } } | [organization:
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::destroy
-* @see app/Http/Controllers/OrganizationsController.php:59
+* @see app/Http/Controllers/OrganizationsController.php:58
 * @route '/organizations/{organization}'
 */
 export const destroy = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -315,7 +315,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::destroy
-* @see app/Http/Controllers/OrganizationsController.php:59
+* @see app/Http/Controllers/OrganizationsController.php:58
 * @route '/organizations/{organization}'
 */
 destroy.url = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -346,7 +346,7 @@ destroy.url = (args: { organization: number | { id: number } } | [organization: 
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::destroy
-* @see app/Http/Controllers/OrganizationsController.php:59
+* @see app/Http/Controllers/OrganizationsController.php:58
 * @route '/organizations/{organization}'
 */
 destroy.delete = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -359,7 +359,7 @@ destroy.delete = (args: { organization: number | { id: number } } | [organizatio
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::restore
-* @see app/Http/Controllers/OrganizationsController.php:66
+* @see app/Http/Controllers/OrganizationsController.php:65
 * @route '/organizations/{organization}/restore'
 */
 export const restore = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -377,7 +377,7 @@ restore.definition = {
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::restore
-* @see app/Http/Controllers/OrganizationsController.php:66
+* @see app/Http/Controllers/OrganizationsController.php:65
 * @route '/organizations/{organization}/restore'
 */
 restore.url = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -408,7 +408,7 @@ restore.url = (args: { organization: number | { id: number } } | [organization: 
 
 /**
 * @see \App\Http\Controllers\OrganizationsController::restore
-* @see app/Http/Controllers/OrganizationsController.php:66
+* @see app/Http/Controllers/OrganizationsController.php:65
 * @route '/organizations/{organization}/restore'
 */
 restore.put = (args: { organization: number | { id: number } } | [organization: number | { id: number } ] | number | { id: number }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

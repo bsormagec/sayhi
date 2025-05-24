@@ -13,7 +13,8 @@ export function applyLayoutToPage(module: unknown, pageName: string): void {
         pageName.toLowerCase().includes('login') ||
         pageName.toLowerCase().includes('register') ||
         pageName.toLowerCase().includes('password') ||
-        pageName.toLowerCase().includes('verification');
+        pageName.toLowerCase().includes('verification') ||
+        pageName.toLowerCase().includes('verify');
 
     (module as PageModule).default.layout = (page: React.ReactNode) => {
         if (isAuthRoute) {

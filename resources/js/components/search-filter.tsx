@@ -10,7 +10,6 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface Values {
-    role: string;
     search: string;
     trashed: string;
 }
@@ -19,7 +18,7 @@ interface Values {
 const ANY_VALUE = 'any'; // Instead of empty string
 
 function pickBy(object: Values): Partial<Values> {
-    const keys: Array<keyof Values> = ['role', 'search', 'trashed'];
+    const keys: Array<keyof Values> = ['search', 'trashed'];
     return keys.reduce<Partial<Values>>((acc, key) => {
         const value = object[key];
         // If the value is ANY_VALUE, don't include it in the query
@@ -32,7 +31,6 @@ function pickBy(object: Values): Partial<Values> {
 
 interface SearchFilterPageProps extends SharedData {
     filters: {
-        role?: string;
         search?: string;
         trashed?: string;
     };
@@ -45,7 +43,6 @@ export default function SearchFilter() {
 
     const [values, setValues] = React.useState<Values>({
         // Convert empty strings in filters to ANY_VALUE
-        role: filters.role || ANY_VALUE,
         search: filters.search || '',
         trashed: filters.trashed || ANY_VALUE,
     });
@@ -79,21 +76,6 @@ export default function SearchFilter() {
                         </PopoverTrigger>
                         <PopoverContent className="w-72 p-4" align="start">
                             <div className="grid gap-4">
-                                {Object.prototype.hasOwnProperty.call(filters, 'role') && (
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="role">{t('Role')}</Label>
-                                        <Select value={values.role} onValueChange={(value) => handleChange('role', value)}>
-                                            <SelectTrigger id="role">
-                                                <SelectValue placeholder={t('Select role')} />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value={ANY_VALUE}>{t('Any')}</SelectItem>
-                                                <SelectItem value="user">{t('User')}</SelectItem>
-                                                <SelectItem value="owner">{t('Owner')}</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                )}
                                 <div className="grid gap-2">
                                     <Label htmlFor="trashed">{t('Trashed')}</Label>
                                     <Select value={values.trashed} onValueChange={(value) => handleChange('trashed', value)}>

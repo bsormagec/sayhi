@@ -22,7 +22,6 @@ final class {{PluralName}}Controller extends Controller
             'filters' => Request::all(['search', 'trashed']),
             '{{pluralSlug}}' => new {{SingularName}}Collection(
                 {{SingularName}}::query()
-                    ->where('account_id', Auth::user()->account_id)
                     ->orderBy('name')
                     ->when(Request::filled('search'), fn($query) => $query->where('name', 'like', '%'.Request::input('search').'%'))
                     ->when(Request::filled('trashed'), fn($query) => Request::input('trashed') === 'with'
@@ -41,10 +40,7 @@ final class {{PluralName}}Controller extends Controller
 
     public function store({{PluralName}}Request $request): RedirectResponse
     {
-        $data = $request->validated();
-        $data['account_id'] = Auth::user()->account_id;
-
-        {{SingularName}}::create($data);
+        {{SingularName}}::create($request->validated());
 
         return Redirect::route('{{pluralSlug}}.index')->with('success', translate_with_gender('created', '{{SingularName}}'));
     }

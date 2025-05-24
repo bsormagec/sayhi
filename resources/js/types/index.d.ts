@@ -24,7 +24,6 @@ export interface User {
     avatar?: string;
     owner: string;
     deleted_at: string;
-    account: Account;
     can_delete: boolean;
     [key: string]: unknown; // This allows for additional properties...
 }

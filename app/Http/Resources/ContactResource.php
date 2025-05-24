@@ -7,6 +7,7 @@ namespace App\Http\Resources;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\OrganizationResource;
 
 /**
  * @mixin Contact
@@ -31,6 +32,7 @@ final class ContactResource extends JsonResource
             'postal_code' => $this->postal_code,
             'deleted_at' => $this->deleted_at,
             'organization_id' => $this->organization_id,
+            'organization' => new OrganizationResource($this->whenLoaded('organization')),
         ];
     }
 }

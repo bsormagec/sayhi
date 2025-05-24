@@ -9,6 +9,7 @@ use App\Http\Resources\ContactCollection;
 use App\Http\Resources\ContactResource;
 use App\Http\Resources\UserOrganizationCollection;
 use App\Models\Contact;
+use App\Models\Organization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -23,8 +24,7 @@ final class ContactsController extends Controller
         return Inertia::render('contacts/index', [
             'filters' => Request::all(['search', 'trashed']),
             'contacts' => new ContactCollection(
-                Auth::user()->account->contacts()
-                    ->with('organization')
+                Contact::with('organization')
                     ->orderByName()
                     ->filter(Request::only(['search', 'trashed']))
                     ->paginate()
@@ -36,8 +36,7 @@ final class ContactsController extends Controller
     public function create()
     {
         return Inertia::render('contacts/create', [
-            'organizations' => Auth::user()->account
-                ->organizations()
+            'organizations' => Organization::query()
                 ->orderBy('name')
                 ->get()
                 ->map
@@ -47,7 +46,7 @@ final class ContactsController extends Controller
 
     public function store(ContactRequest $request): RedirectResponse
     {
-        Auth::user()->account->contacts()->create($request->validated());
+        Contact::create($request->validated());
 
         return Redirect::route('contacts.index')->with('success', translate_with_gender('created', 'Contact'));
     }
@@ -57,7 +56,7 @@ final class ContactsController extends Controller
         return Inertia::render('contacts/edit', [
             'contact' => new ContactResource($contact),
             'organizations' => new UserOrganizationCollection(
-                Auth::user()->account->organizations()
+                Organization::query()
                     ->orderBy('name')
                     ->get()
             ),

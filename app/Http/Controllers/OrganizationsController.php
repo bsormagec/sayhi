@@ -21,8 +21,7 @@ final class OrganizationsController extends Controller
         return Inertia::render('organizations/index', [
             'filters' => Request::all(['search', 'trashed']),
             'organizations' => new OrganizationCollection(
-                Auth::user()->account->organizations()
-                    ->orderBy('name')
+                Organization::orderBy('name')
                     ->filter(Request::only(['search', 'trashed']))
                     ->paginate()
                     ->withQueryString()
@@ -37,7 +36,7 @@ final class OrganizationsController extends Controller
 
     public function store(OrganizationsRequest $request): RedirectResponse
     {
-        Auth::user()->account->organizations()->create($request->validated());
+        Organization::create($request->validated());
 
         return Redirect::route('organizations.index')->with('success', translate_with_gender('created', 'Organization'));
     }

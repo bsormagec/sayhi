@@ -19,7 +19,6 @@ final class UserCollection extends ResourceCollection
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'owner' => $user->owner,
             'deleted_at' => $user->deleted_at,
         ]);
     }

@@ -21,7 +21,6 @@ final class {{SingularName}} extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'account_id',
         'name',
         // Add your fillable fields here
     ];

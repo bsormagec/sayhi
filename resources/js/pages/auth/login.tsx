@@ -21,7 +21,7 @@ interface LoginProps {
     canResetPassword: boolean;
 }
 
-export default function Login({ status, canResetPassword }: LoginProps) {
+export default function Login({ status, canResetPassword=true }: LoginProps) {
     const { t } = useTranslation();
     const { setAuthInfo } = usePageActions();
 
@@ -101,6 +101,12 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
                         {t('Log in')}
                     </Button>
+                </div>
+                <div className="text-muted-foreground text-center text-sm">
+                    Don't have an account?{' '}
+                    <TextLink href={route('register')} tabIndex={5}>
+                        Sign up
+                    </TextLink>
                 </div>
             </form>
 

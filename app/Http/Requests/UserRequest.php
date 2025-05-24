@@ -38,7 +38,6 @@ final class UserRequest extends FormRequest
                 Rule::unique('users')->ignore($userId),
             ],
             'password' => ['sometimes', 'required', Password::defaults()],
-            'owner' => ['required', 'boolean'],
             'photo' => [
                 'nullable',
                 'image',

@@ -61,7 +61,6 @@ export default function Index() {
                         <TableRow>
                             <TableHead>{t('Name')}</TableHead>
                             <TableHead>{t('Email')}</TableHead>
-                            <TableHead>{t('Role')}</TableHead>
                             <TableHead className="w-[50px]"></TableHead>
                         </TableRow>
                     </TableHeader>

@@ -14,16 +14,8 @@ use Inertia\Inertia;
 
 Route::get('/locales/{locale}/translation.json', FetchTranslationsController::class)->name('i18next.fetch');
 
-// Auth
-Route::controller(AuthenticatedSessionController::class)->group(function () {
-    Route::middleware('guest')->group(function () {
-        Route::get('login', 'create')->name('login');
-        Route::post('login', 'store')->name('login.store');
-    });
-    Route::post('logout', 'destroy')->name('logout');
-});
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','verified')->group(function () {
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -47,3 +39,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/fadogen', function () {
         return Inertia::render('fadogen');
     })->name('fadogen');});
+
+    require __DIR__.'/auth.php';
