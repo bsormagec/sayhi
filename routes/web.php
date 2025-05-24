@@ -46,5 +46,4 @@ Route::middleware('auth')->group(function () {
     // Fadogen
     Route::get('/fadogen', function () {
         return Inertia::render('fadogen');
-    })->name('fadogen');
-});
+    })->name('fadogen');});

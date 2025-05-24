@@ -1,0 +1,115 @@
+import DeletionControls from '@/components/deletion-controls';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { usePageActions } from '@/contexts/page-context';
+import { BreadcrumbItem, SharedData } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Head, Link, router, usePage } from '@inertiajs/react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import * as z from 'zod';
+
+// Add this to your types.ts file if it doesn't exist
+// interface {{SingularUcfirst}} {
+//     id: number;
+//     name: string;
+//     deleted_at: string | null;
+//     // Add your fields here
+// }
+
+interface EditPageProps extends SharedData {
+    {{singularSlug}}: any; // Replace 'any' with your {{SingularUcfirst}} interface
+}
+
+export default function Edit() {
+    const { t } = useTranslation();
+    const { {{singularSlug}} } = usePage<EditPageProps>().props;
+
+    const { setBreadcrumbs } = usePageActions();
+
+    const breadcrumbs: BreadcrumbItem[] = React.useMemo(
+        () => [
+            {
+                title: '{{SingularUcfirst}}',
+                count: 2,
+                href: route('{{pluralSlug}}.index'),
+            },
+            {
+                title: {{singularSlug}}.name,
+                href: route('{{pluralSlug}}.edit', {{singularSlug}}.id),
+            },
+        ],
+        [{{singularSlug}}.name, {{singularSlug}}.id],
+    );
+
+    useEffect(() => {
+        setBreadcrumbs(breadcrumbs);
+    }, [breadcrumbs, setBreadcrumbs]);
+
+    const formSchema = z.object({
+        name: z.string().min(1, { message: t('The name field is required.') }),
+        // Add your fields here
+    });
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: {{singularSlug}}.name || '',
+            // Add your default values here
+        },
+    });
+
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        router.put(route('{{pluralSlug}}.update', {{singularSlug}}.id), values);
+    }
+
+    return (
+        <>
+            <Head title={t('Edit {{SingularUcfirst}}')} />
+
+            <div className="max-w-4xl">
+                <Card>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <CardContent className="space-y-6 pt-6">
+                                <FormField
+                                    control={form.control}
+                                    name="name"
+                                    render={({ field }) => (
+                                        <FormItem className="col-span-2 md:col-span-1">
+                                            <FormLabel>{t('Name')}</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} autoFocus />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                {/* Add your form fields here */}
+                            </CardContent>
+
+                            <CardFooter className="flex flex-row-reverse gap-2 pt-2">
+                                <Button type="submit">{t('Update')}</Button>
+                                <Button variant="ghost" type="button" asChild>
+                                    <Link href={route('{{pluralSlug}}.index')}>{t('Cancel')}</Link>
+                                </Button>
+                            </CardFooter>
+                        </form>
+                    </Form>
+                </Card>
+
+                <DeletionControls
+                    className="mt-8"
+                    resourceName="{{SingularUcfirst}}"
+                    deletedAt={{{singularSlug}}.deleted_at}
+                    onDelete={() => router.delete(route('{{pluralSlug}}.destroy', {{singularSlug}}.id))}
+                    onRestore={() => router.put(route('{{pluralSlug}}.restore', {{singularSlug}}.id))}
+                />
+            </div>
+        </>
+    );
+}

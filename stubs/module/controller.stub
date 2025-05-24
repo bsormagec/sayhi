@@ -1,0 +1,79 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\{{PluralName}}Request;
+use App\Http\Resources\{{SingularName}}Collection;
+use App\Http\Resources\{{SingularName}}Resource;
+use App\Models\{{SingularName}};
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
+
+final class {{PluralName}}Controller extends Controller
+{
+    public function index()
+    {
+        return Inertia::render('{{pluralSlug}}/index', [
+            'filters' => Request::all(['search', 'trashed']),
+            '{{pluralSlug}}' => new {{SingularName}}Collection(
+                {{SingularName}}::query()
+                    ->where('account_id', Auth::user()->account_id)
+                    ->orderBy('name')
+                    ->when(Request::filled('search'), fn($query) => $query->where('name', 'like', '%'.Request::input('search').'%'))
+                    ->when(Request::filled('trashed'), fn($query) => Request::input('trashed') === 'with'
+                        ? $query->withTrashed()
+                        : $query->onlyTrashed())
+                    ->paginate()
+                    ->withQueryString()
+            ),
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('{{pluralSlug}}/create');
+    }
+
+    public function store({{PluralName}}Request $request): RedirectResponse
+    {
+        $data = $request->validated();
+        $data['account_id'] = Auth::user()->account_id;
+
+        {{SingularName}}::create($data);
+
+        return Redirect::route('{{pluralSlug}}.index')->with('success', translate_with_gender('created', '{{SingularName}}'));
+    }
+
+    public function edit({{SingularName}} ${{singularSlug}})
+    {
+        return Inertia::render('{{pluralSlug}}/edit', [
+            '{{singularSlug}}' => new {{SingularName}}Resource(${{singularSlug}}),
+        ]);
+    }
+
+    public function update({{SingularName}} ${{singularSlug}}, {{PluralName}}Request $request): RedirectResponse
+    {
+        ${{singularSlug}}->update($request->validated());
+
+        return Redirect::back()->with('success', translate_with_gender('updated', '{{SingularName}}'));
+    }
+
+    public function destroy({{SingularName}} ${{singularSlug}}): RedirectResponse
+    {
+        ${{singularSlug}}->delete();
+
+        return Redirect::back()->with('success', translate_with_gender('deleted', '{{SingularName}}'));
+    }
+
+    public function restore({{SingularName}} ${{singularSlug}}): RedirectResponse
+    {
+        ${{singularSlug}}->restore();
+
+        return Redirect::back()->with('success', translate_with_gender('restored', '{{SingularName}}'));
+    }
+}
