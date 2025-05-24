@@ -65,7 +65,7 @@ export default function Index() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {data.map(({ id, name, email, owner, deleted_at }) => (
+                        {data.map(({ id, name, email, deleted_at }) => (
                             <TableRow key={id}>
                                 <TableCell className="relative p-2">
                                     <div className="absolute inset-0 z-10">
@@ -91,9 +91,6 @@ export default function Index() {
                                         <Link href={route('users.edit', id)} prefetch tabIndex={-1} className="block h-full w-full">
                                             <span className="sr-only">Modifier {name}</span>
                                         </Link>
-                                    </div>
-                                    <div className="relative z-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
-                                        {owner ? t('Owner') : t('User')}
                                     </div>
                                 </TableCell>
                                 <TableCell className="w-px">

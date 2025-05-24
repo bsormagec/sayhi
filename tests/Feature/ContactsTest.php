@@ -25,7 +25,6 @@ final class ContactsTest extends TestCase
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'johndoe@example.com',
-            'owner' => true,
         ]);
 
         $organization = Organization::create(['name' => 'Example Organization Inc.']);

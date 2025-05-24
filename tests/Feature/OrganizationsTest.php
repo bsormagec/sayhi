@@ -24,7 +24,6 @@ final class OrganizationsTest extends TestCase
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'johndoe@example.com',
-            'owner' => true,
         ]);
 
         Organization::create([

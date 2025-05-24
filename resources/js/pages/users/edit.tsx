@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Form, FormInput, FormLabel, FormMessage } from '@/components/form';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { usePageActions } from '@/contexts/page-context';
 import { useDeletionControls } from '@/hooks/use-deletion-controls';
 import { destroy, restore, update } from '@/actions/App/Http/Controllers/UsersController';
@@ -45,8 +44,7 @@ export default function Edit() {
         first_name: user.first_name || '',
         last_name: user.last_name || '',
         email: user.email || '',
-        password: user.password || '',
-        owner: user.owner ? '1' : '0',
+        password: user.password || ''
     });
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -175,28 +173,6 @@ export default function Edit() {
 
                                 <FormMessage error={form.errors.password} />
                             </div>
-                        </div>
-
-                        <div>
-                            <FormLabel htmlFor="owner" error={form.errors.owner}>
-                                {t('Owner')}
-                            </FormLabel>
-
-                            <Select
-                                value={form.data.owner}
-                                onValueChange={(value) => form.setData('owner', value)}
-                                disabled={form.processing || !user.can_delete}
-                            >
-                                <SelectTrigger id="owner" className={form.errors.owner ? 'border-destructive' : ''}>
-                                    <SelectValue placeholder={t('Select an option')} />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="1">{t('Yes')}</SelectItem>
-                                    <SelectItem value="0">{t('No')}</SelectItem>
-                                </SelectContent>
-                            </Select>
-
-                            <FormMessage error={form.errors.owner} />
                         </div>
 
                         <div className="flex flex-col justify-end gap-4 sm:flex-row">

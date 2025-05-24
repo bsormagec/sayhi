@@ -22,7 +22,6 @@ export interface User {
     last_name: string;
     email: string;
     avatar?: string;
-    owner: string;
     deleted_at: string;
     can_delete: boolean;
     [key: string]: unknown; // This allows for additional properties...
@@ -33,7 +32,6 @@ export type UserFormData = {
     last_name: string;
     email: string;
     password: string;
-    owner: string;
 };
 
 export interface Organization {

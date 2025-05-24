@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { BreadcrumbItem, UserFormData } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import { Loader2 } from 'lucide-react';
@@ -38,7 +37,6 @@ export default function Create() {
         last_name: '',
         email: '',
         password: '',
-        owner: '0',
     });
 
     function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -133,24 +131,6 @@ export default function Create() {
 
                                 <FormMessage error={form.errors.password} />
                             </div>
-                        </div>
-
-                        <div>
-                            <FormLabel htmlFor="owner" error={form.errors.owner}>
-                                {t('Owner')}
-                            </FormLabel>
-
-                            <Select value={form.data.owner} onValueChange={(value) => form.setData('owner', value)} disabled={form.processing}>
-                                <SelectTrigger id="owner" className={form.errors.owner ? 'border-destructive' : ''}>
-                                    <SelectValue placeholder={t('Select an option')} />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="1">{t('Yes')}</SelectItem>
-                                    <SelectItem value="0">{t('No')}</SelectItem>
-                                </SelectContent>
-                            </Select>
-
-                            <FormMessage error={form.errors.owner} />
                         </div>
 
                         <div className="flex justify-end">
