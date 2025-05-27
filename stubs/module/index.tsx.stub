@@ -11,16 +11,12 @@ import { ChevronRight, Trash } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-// Add this to your types.ts file if it doesn't exist
-// interface {{SingularUcfirst}} {
-//     id: number;
-//     name: string;
-//     deleted_at: string | null;
-//     // Add your fields here
-// }
+{{DynamicImports}}
+
+{{TypeScriptInterface}}
 
 interface IndexPageProps extends SharedData {
-    {{pluralSlug}}: PaginatedData<any>; // Replace 'any' with your {{SingularUcfirst}} interface
+    {{plural_kebab_name}}: PaginatedData<{{SingularUcfirst}}>;
 }
 
 export default function Index() {
@@ -30,34 +26,34 @@ export default function Index() {
     const breadcrumbs: BreadcrumbItem[] = React.useMemo(
         () => [
             {
-                title: '{{SingularUcfirst}}',
+                title: '{{PluralTitleCase}}',
                 count: 2,
-                href: route('{{pluralSlug}}.index'),
+                href: route('{{plural_kebab_name}}.index'),
             },
         ],
-        [],
+        [t],
     );
 
     useEffect(() => {
         setBreadcrumbs(breadcrumbs);
     }, [breadcrumbs, setBreadcrumbs]);
 
-    const { {{pluralSlug}} } = usePage<IndexPageProps>().props;
+    const { {{plural_kebab_name}} } = usePage<IndexPageProps>().props;
     const {
         data,
         meta: { links },
-    } = {{pluralSlug}};
+    } = {{plural_kebab_name}};
 
     return (
         <>
-            <Head title={t('{{SingularUcfirst}}', { count: 2 })} />
+            <Head title={t('{{PluralTitleCase}}', { count: 2 })} />
 
             <div className="flex h-full w-full flex-col">
                 <div className="mb-6 flex items-center justify-between gap-2">
                     <SearchFilter />
 
                     <div className="flex-shrink-0">
-                        <AnchorLink href={route('{{pluralSlug}}.create')}>
+                        <AnchorLink href={route('{{plural_kebab_name}}.create')}>
                             <span className="md:hidden">{t('Create')}</span>
                             <span className="hidden md:inline">{t('Create {{SingularUcfirst}}')}</span>
                         </AnchorLink>
@@ -67,29 +63,17 @@ export default function Index() {
                 <TableContainer>
                     <TableHeader>
                         <TableRow>
-                            <TableHead>{t('Name')}</TableHead>
-                            {/* Add your table headers here */}
+                            {{TableHeaders}}
                             <TableHead className="w-[50px]"></TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {data.map(({ id, name, deleted_at }) => (
-                            <TableRow key={id}>
-                                <TableCell className="relative p-2">
-                                    <div className="absolute inset-0 z-10">
-                                        <Link href={route('{{pluralSlug}}.edit', id)} prefetch className="block h-full w-full">
-                                            <span className="sr-only">Modifier {name}</span>
-                                        </Link>
-                                    </div>
-                                    <div className="relative z-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
-                                        {name}
-                                        {deleted_at && <Trash className="text-muted-foreground ml-2 h-3 w-3 shrink-0" />}
-                                    </div>
-                                </TableCell>
-                                {/* Add your table cells here */}
+                        {data.map((item: {{SingularUcfirst}}) => (
+                            <TableRow key={item.id}>
+                                {{TableCells}}
                                 <TableCell className="w-px">
                                     <Button asChild variant="ghost" size="icon">
-                                        <Link tabIndex={-1} href={route('{{pluralSlug}}.edit', id)} prefetch>
+                                        <Link tabIndex={-1} href={route('{{plural_kebab_name}}.edit', item.id)} prefetch>
                                             <ChevronRight className="text-muted-foreground h-4 w-4" />
                                         </Link>
                                     </Button>
@@ -98,8 +82,8 @@ export default function Index() {
                         ))}
                         {data.length === 0 && (
                             <TableRow>
-                                <TableCell colSpan={4} className="h-24 text-center">
-                                    {t('No {{pluralSlug}} found.')}
+                                <TableCell colSpan={{{HeaderCountPlusOne}}} className="h-24 text-center">
+                                    {t('No {{plural_kebab_name}} found.')}
                                 </TableCell>
                             </TableRow>
                         )}

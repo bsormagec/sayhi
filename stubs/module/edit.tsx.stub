@@ -1,27 +1,23 @@
-import DeletionControls from '@/components/deletion-controls';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+{{DynamicImports}}
 import { usePageActions } from '@/contexts/page-context';
 import { BreadcrumbItem, SharedData } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Head, Link, router, usePage } from '@inertiajs/react';
+import { Loader2 } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as z from 'zod';
+import { useDeletionControls } from '@/hooks/use-deletion-controls';
 
-// Add this to your types.ts file if it doesn't exist
-// interface {{SingularUcfirst}} {
-//     id: number;
-//     name: string;
-//     deleted_at: string | null;
-//     // Add your fields here
-// }
+{{TypeScriptInterface}}
 
 interface EditPageProps extends SharedData {
-    {{singularSlug}}: any; // Replace 'any' with your {{SingularUcfirst}} interface
+    {{singularSlug}}: {{SingularUcfirst}};
 }
 
 export default function Edit() {
@@ -33,16 +29,16 @@ export default function Edit() {
     const breadcrumbs: BreadcrumbItem[] = React.useMemo(
         () => [
             {
-                title: '{{SingularUcfirst}}',
+                title: t('{{PluralTitleCase}}'),
                 count: 2,
-                href: route('{{pluralSlug}}.index'),
+                href: route('{{plural_kebab_name}}.index'),
             },
             {
                 title: {{singularSlug}}.name,
-                href: route('{{pluralSlug}}.edit', {{singularSlug}}.id),
+                href: route('{{plural_kebab_name}}.edit', {{singularSlug}}.id),
             },
         ],
-        [{{singularSlug}}.name, {{singularSlug}}.id],
+        [{{singularSlug}}.name, {{singularSlug}}.id, t]
     );
 
     useEffect(() => {
@@ -50,65 +46,84 @@ export default function Edit() {
     }, [breadcrumbs, setBreadcrumbs]);
 
     const formSchema = z.object({
-        name: z.string().min(1, { message: t('The name field is required.') }),
-        // Add your fields here
+        {{ZodSchemaFields}}
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: {{singularSlug}}.name || '',
-            // Add your default values here
+            ...{{singularSlug}},
+            {{FormDefaultValues}}
         },
     });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        router.put(route('{{pluralSlug}}.update', {{singularSlug}}.id), values);
+        form.clearErrors();
+        router.put(route('{{plural_kebab_name}}.update', {{singularSlug}}.id), values, {
+            onSuccess: () => { /* Handle success, e.g., show notification */ },
+            onError: (errors) => {
+                Object.keys(errors).forEach((key) => {
+                    form.setError(key as keyof z.infer<typeof formSchema>, {
+                        type: 'manual',
+                        message: errors[key],
+                    });
+                });
+            },
+            preserveScroll: true,
+        });
     }
+
+    const handleDelete = async () => {
+        router.delete(route('{{plural_kebab_name}}.destroy', {{singularSlug}}.id), {
+            preserveScroll: true,
+        });
+    };
+
+    const handleRestore = async () => {
+        router.put(route('{{plural_kebab_name}}.restore', {{singularSlug}}.id), {}, {
+            preserveScroll: true,
+        });
+    };
+
+    const { showDeleteControls } = useDeletionControls({
+        isDeleted: !!{{singularSlug}}.deleted_at,
+        resourceType: 'contact',
+        onDelete: handleDelete,
+        onRestore: handleRestore,
+        processing: form.formState.isSubmitting,
+    });
 
     return (
         <>
-            <Head title={t('Edit {{SingularUcfirst}}')} />
+            <Head title={t('Edit {{SingularUcfirst}}', { name: {{singularSlug}}.name })} />
+            
+            {typeof showDeleteControls === 'function' && {{singularSlug}}.deleted_at && showDeleteControls()}
 
             <div className="max-w-4xl">
                 <Card>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
-                            <CardContent className="space-y-6 pt-6">
-                                <FormField
-                                    control={form.control}
-                                    name="name"
-                                    render={({ field }) => (
-                                        <FormItem className="col-span-2 md:col-span-1">
-                                            <FormLabel>{t('Name')}</FormLabel>
-                                            <FormControl>
-                                                <Input {...field} autoFocus />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Add your form fields here */}
+                            <CardContent className="grid gap-6 pt-6 sm:grid-cols-2">
+                                {{FormFields}}
                             </CardContent>
 
-                            <CardFooter className="flex flex-row-reverse gap-2 pt-2">
-                                <Button type="submit">{t('Update')}</Button>
-                                <Button variant="ghost" type="button" asChild>
-                                    <Link href={route('{{pluralSlug}}.index')}>{t('Cancel')}</Link>
-                                </Button>
+                            <CardFooter className="flex flex-col items-stretch gap-3 pt-4 sm:flex-row sm:justify-between">
+                                <div className="flex flex-grow justify-start">
+                                     {typeof showDeleteControls === 'function' && !{{singularSlug}}.deleted_at && showDeleteControls()}
+                                </div>
+                                <div className="flex flex-none gap-2 self-end sm:self-auto">
+                                    <Button variant="ghost" type="button" asChild disabled={form.formState.isSubmitting}>
+                                        <Link href={route('{{plural_kebab_name}}.index')}>{t('Cancel')}</Link>
+                                    </Button>
+                                    <Button type="submit" disabled={form.formState.isSubmitting}>
+                                        {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                        {t('Update {{SingularUcfirst}}')}
+                                    </Button>
+                                </div>
                             </CardFooter>
                         </form>
                     </Form>
                 </Card>
-
-                <DeletionControls
-                    className="mt-8"
-                    resourceName="{{SingularUcfirst}}"
-                    deletedAt={{{singularSlug}}.deleted_at}
-                    onDelete={() => router.delete(route('{{pluralSlug}}.destroy', {{singularSlug}}.id))}
-                    onRestore={() => router.put(route('{{pluralSlug}}.restore', {{singularSlug}}.id))}
-                />
             </div>
         </>
     );

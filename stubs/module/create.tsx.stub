@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+{{DynamicImports}}
 import { usePageActions } from '@/contexts/page-context';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Head, Link, router } from '@inertiajs/react';
@@ -18,16 +19,16 @@ export default function Create() {
     const breadcrumbs: BreadcrumbItem[] = React.useMemo(
         () => [
             {
-                title: '{{SingularUcfirst}}',
+                title: '{{PluralTitleCase}}',
                 count: 2,
-                href: route('{{pluralSlug}}.index'),
+                href: route('{{plural_kebab_name}}.index'),
             },
             {
                 title: t('Create'),
-                href: route('{{pluralSlug}}.create'),
+                href: route('{{plural_kebab_name}}.create'),
             },
         ],
-        [t],
+        [t]
     );
 
     useEffect(() => {
@@ -35,20 +36,18 @@ export default function Create() {
     }, [breadcrumbs, setBreadcrumbs]);
 
     const formSchema = z.object({
-        name: z.string().min(1, { message: t('The name field is required.') }),
-        // Add your fields here
+        {{ZodSchemaFields}}
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: '',
-            // Add your default values here
+            {{FormDefaultValues}}
         },
     });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        router.post(route('{{pluralSlug}}.store'), values);
+        router.post(route('{{plural_kebab_name}}.store'), values);
     }
 
     return (
@@ -60,27 +59,13 @@ export default function Create() {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <CardContent className="space-y-6 pt-6">
-                                <FormField
-                                    control={form.control}
-                                    name="name"
-                                    render={({ field }) => (
-                                        <FormItem className="col-span-2 md:col-span-1">
-                                            <FormLabel>{t('Name')}</FormLabel>
-                                            <FormControl>
-                                                <Input {...field} autoFocus />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Add your form fields here */}
+                                {{FormFields}}
                             </CardContent>
 
                             <CardFooter className="flex flex-row-reverse justify-between gap-2 pt-2">
                                 <Button type="submit">{t('Create')}</Button>
                                 <Button variant="ghost" type="button" asChild>
-                                    <Link href={route('{{pluralSlug}}.index')}>{t('Cancel')}</Link>
+                                    <Link href={route('{{plural_kebab_name}}.index')}>{t('Cancel')}</Link>
                                 </Button>
                             </CardFooter>
                         </form>
