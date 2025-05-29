@@ -60,7 +60,7 @@ export default function Edit() {
 
     const { showDeleteControls } = useDeletionControls({
         isDeleted: !!{{singularSlug}}.deleted_at,
-        resourceType: 'contact', // Fixed resourceType to match allowed values in useDeletionControls
+        resourceType: '{{singularSlug}}', // Dynamic resourceType based on singular name of the module
         onDelete: handleDelete,
         onRestore: handleRestore,
         processing: form.processing,
