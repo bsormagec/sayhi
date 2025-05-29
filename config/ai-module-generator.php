@@ -6,6 +6,21 @@
 return [
     /*
     |--------------------------------------------------------------------------
+    | Web Interface Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configure web interface settings for the AI Module Generator.
+    |
+    */
+    'web_interface' => [
+        'enabled' => env('AI_MODULE_WEB_INTERFACE', true),
+        'route_prefix' => env('AI_MODULE_ROUTE_PREFIX', 'ai-module-generator'),
+        'middleware' => ['web', 'auth'],
+        'cache_predictions' => true,
+        'max_recent_modules' => 10,
+    ],
+    /*
+    |--------------------------------------------------------------------------
     | AI Configuration
     |--------------------------------------------------------------------------
     |
