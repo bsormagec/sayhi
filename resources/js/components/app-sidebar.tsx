@@ -43,8 +43,7 @@ import AppLogo from '@/components/app-logo';
                   title: 'Fadogen',
                   url: route('fadogen', {}, false),
                   icon: SparklesIcon,
-              }
-          ],
+              }],
           [],
       );
 
