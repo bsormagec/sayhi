@@ -5,15 +5,11 @@ import { TableContainer } from '@/components/table-container';
 import { Button } from '@/components/ui/button';
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { usePageActions } from '@/contexts/page-context';
-import { BreadcrumbItem, PaginatedData, SharedData } from '@/types';
+import { BreadcrumbItem, {{SingularUcfirst}}, PaginatedData, SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 import { ChevronRight, Trash } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-
-{{DynamicImports}}
-
-{{TypeScriptInterface}}
 
 interface IndexPageProps extends SharedData {
     {{plural_kebab_name}}: PaginatedData<{{SingularUcfirst}}>;
@@ -31,7 +27,7 @@ export default function Index() {
                 href: route('{{plural_kebab_name}}.index'),
             },
         ],
-        [t],
+        []
     );
 
     useEffect(() => {
@@ -68,7 +64,7 @@ export default function Index() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {data.map((item: {{SingularUcfirst}}) => (
+                        {data.map((item) => (
                             <TableRow key={item.id}>
                                 {{TableCells}}
                                 <TableCell className="w-px">

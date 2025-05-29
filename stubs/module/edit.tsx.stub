@@ -1,20 +1,15 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-{{DynamicImports}}
-import { usePageActions } from '@/contexts/page-context';
-import { BreadcrumbItem, SharedData } from '@/types';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Head, Link, router, usePage } from '@inertiajs/react';
+import { BreadcrumbItem, {{SingularUcfirst}}, {{SingularUcfirst}}FormData, SharedData } from '@/types';
+import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { Loader2 } from 'lucide-react';
 import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import * as z from 'zod';
-import { useDeletionControls } from '@/hooks/use-deletion-controls';
 
-{{TypeScriptInterface}}
+import { Form, FormInput, FormLabel, FormMessage } from '@/components/form';
+{{DynamicImports}}
+import { usePageActions } from '@/contexts/page-context';
+import { useDeletionControls } from '@/hooks/use-deletion-controls';
+// Note: Using direct Inertia router calls instead of action creators
 
 interface EditPageProps extends SharedData {
     {{singularSlug}}: {{SingularUcfirst}};
@@ -23,13 +18,12 @@ interface EditPageProps extends SharedData {
 export default function Edit() {
     const { t } = useTranslation();
     const { {{singularSlug}} } = usePage<EditPageProps>().props;
-
     const { setBreadcrumbs } = usePageActions();
 
     const breadcrumbs: BreadcrumbItem[] = React.useMemo(
         () => [
             {
-                title: t('{{PluralTitleCase}}'),
+                title: '{{PluralTitleCase}}',
                 count: 2,
                 href: route('{{plural_kebab_name}}.index'),
             },
@@ -38,92 +32,64 @@ export default function Edit() {
                 href: route('{{plural_kebab_name}}.edit', {{singularSlug}}.id),
             },
         ],
-        [{{singularSlug}}.name, {{singularSlug}}.id, t]
+        [{{singularSlug}}.name, {{singularSlug}}.id]
     );
 
     useEffect(() => {
         setBreadcrumbs(breadcrumbs);
     }, [breadcrumbs, setBreadcrumbs]);
 
-    const formSchema = z.object({
-        {{ZodSchemaFields}}
+    const form = useForm<{{SingularUcfirst}}FormData>({
+        {{FormDefaultValues}}
     });
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            ...{{singularSlug}},
-            {{FormDefaultValues}}
-        },
-    });
-
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        form.clearErrors();
-        router.put(route('{{plural_kebab_name}}.update', {{singularSlug}}.id), values, {
-            onSuccess: () => { /* Handle success, e.g., show notification */ },
-            onError: (errors) => {
-                Object.keys(errors).forEach((key) => {
-                    form.setError(key as keyof z.infer<typeof formSchema>, {
-                        type: 'manual',
-                        message: errors[key],
-                    });
-                });
-            },
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        router.put(route('{{plural_kebab_name}}.update', {{singularSlug}}.id), form.data, {
             preserveScroll: true,
         });
     }
 
     const handleDelete = async () => {
-        router.delete(route('{{plural_kebab_name}}.destroy', {{singularSlug}}.id), {
-            preserveScroll: true,
-        });
+        router.delete(route('{{plural_kebab_name}}.destroy', {{singularSlug}}.id));
     };
 
     const handleRestore = async () => {
-        router.put(route('{{plural_kebab_name}}.restore', {{singularSlug}}.id), {}, {
-            preserveScroll: true,
-        });
+        router.put(route('{{plural_kebab_name}}.restore', {{singularSlug}}.id));
     };
 
     const { showDeleteControls } = useDeletionControls({
         isDeleted: !!{{singularSlug}}.deleted_at,
-        resourceType: 'contact',
+        resourceType: 'contact', // Fixed resourceType to match allowed values in useDeletionControls
         onDelete: handleDelete,
         onRestore: handleRestore,
-        processing: form.formState.isSubmitting,
+        processing: form.processing,
     });
 
     return (
         <>
             <Head title={t('Edit {{SingularUcfirst}}', { name: {{singularSlug}}.name })} />
             
-            {typeof showDeleteControls === 'function' && {{singularSlug}}.deleted_at && showDeleteControls()}
+            {{{singularSlug}}.deleted_at && showDeleteControls()}
 
-            <div className="max-w-4xl">
-                <Card>
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)}>
-                            <CardContent className="grid gap-6 pt-6 sm:grid-cols-2">
-                                {{FormFields}}
-                            </CardContent>
+            <div className="max-w-3xl">
+                <h2 className="mb-6 text-xl font-semibold">{t('Edit {{SingularUcfirst}}')}</h2>
 
-                            <CardFooter className="flex flex-col items-stretch gap-3 pt-4 sm:flex-row sm:justify-between">
-                                <div className="flex flex-grow justify-start">
-                                     {typeof showDeleteControls === 'function' && !{{singularSlug}}.deleted_at && showDeleteControls()}
-                                </div>
-                                <div className="flex flex-none gap-2 self-end sm:self-auto">
-                                    <Button variant="ghost" type="button" asChild disabled={form.formState.isSubmitting}>
-                                        <Link href={route('{{plural_kebab_name}}.index')}>{t('Cancel')}</Link>
-                                    </Button>
-                                    <Button type="submit" disabled={form.formState.isSubmitting}>
-                                        {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        {t('Update {{SingularUcfirst}}')}
-                                    </Button>
-                                </div>
-                            </CardFooter>
-                        </form>
-                    </Form>
-                </Card>
+                <Form onSubmit={onSubmit}>
+                    <div className="space-y-6">
+                        {{FormFields}}
+
+                        <div className="flex justify-between">
+                            <div>
+                                {!{{singularSlug}}.deleted_at && showDeleteControls()}
+                            </div>
+                            <Button type="submit" disabled={form.processing}>
+                                {form.processing && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                {t('Update {{SingularUcfirst}}')}
+                            </Button>
+                        </div>
+                    </div>
+                </Form>
             </div>
         </>
     );
