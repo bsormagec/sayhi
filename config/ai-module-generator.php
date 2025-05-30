@@ -1,7 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * AI Module Generator Configuration
+ *
+ * Configuration file for the AI Module Generator package.
+ * This file contains all the configurable options for module generation.
  */
 return [
     /*
@@ -28,7 +33,7 @@ return [
     |
     */
     'ai' => [
-        // Default AI provider to use (options: 'openai', 'azure', 'anthropic', 'gemini', 'mistral', 'bedrock')
+        // Default AI provider to use
         'provider' => env('AI_MODULE_PROVIDER', 'openai'),
 
         // Default model to use
@@ -49,34 +54,17 @@ return [
         // Enable debug mode to log AI responses in the console
         'debug' => env('AI_DEBUG', false),
 
-        /*
-        |--------------------------------------------------------------------------
-        | Azure OpenAI Configuration
-        |--------------------------------------------------------------------------
-        |
-        | Configuration for Azure OpenAI services. Used when 'provider' is set to 'azure'.
-        |
-        */
-        'azure' => [
-            'api_key' => env('AZURE_OPENAI_API_KEY'),
-            'endpoint' => env('AZURE_OPENAI_ENDPOINT'),
-            'api_version' => env('AZURE_OPENAI_API_VERSION', '2024-02-01'),
-            'deployment_name' => env('AZURE_OPENAI_DEPLOYMENT_NAME')
-        ],
+        // Force batch processing to minimize individual AI calls
+        'force_batch_processing' => env('AI_FORCE_BATCH', true),
 
-        /*
-        |--------------------------------------------------------------------------
-        | AWS Bedrock Configuration
-        |--------------------------------------------------------------------------
-        |
-        | Configuration for AWS Bedrock services. Used when 'provider' is set to 'bedrock'.
-        |
-        */
-        'bedrock' => [
-            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-            'access_key' => env('AWS_ACCESS_KEY_ID'),
-            'secret_key' => env('AWS_SECRET_ACCESS_KEY'),
-        ],
+        // Maximum batch size for component/field processing
+        'max_batch_size' => env('AI_MAX_BATCH_SIZE', 20),
+
+        // Timeout for AI API calls in seconds
+        'timeout' => env('AI_TIMEOUT', 30),
+
+        // Retry attempts for failed AI calls
+        'retry_attempts' => env('AI_RETRY_ATTEMPTS', 2),
     ],
 
     /*
@@ -233,85 +221,137 @@ return [
             'rules' => 'date',
             'component' => 'datetime-picker',
         ],
-        'time' => [
-            'migration' => 'time',
-            'rules' => 'date_format:H:i',
-            'component' => 'time-picker',
+        'timestamp' => [
+            'migration' => 'timestamp',
+            'rules' => 'date',
+            'component' => 'datetime-picker',
         ],
         'email' => [
             'migration' => 'string',
             'rules' => 'email|max:255',
             'component' => 'email-input',
         ],
-        'url' => [
-            'migration' => 'string',
-            'rules' => 'url|max:255',
-            'component' => 'url-input',
-        ],
         'password' => [
             'migration' => 'string',
             'rules' => 'string|min:8',
             'component' => 'password-input',
         ],
-        'enum' => [
-            'migration' => 'enum',
-            'rules' => 'in:{{options}}',
-            'component' => 'select',
+        'url' => [
+            'migration' => 'string',
+            'rules' => 'url|max:255',
+            'component' => 'url-input',
         ],
         'json' => [
             'migration' => 'json',
-            'rules' => 'json',
+            'rules' => 'array',
             'component' => 'json-editor',
         ],
-        'file' => [
-            'migration' => 'string',
-            'rules' => 'file|max:10240',
-            'component' => 'file-upload',
-        ],
-        'image' => [
-            'migration' => 'string',
-            'rules' => 'image|max:10240',
-            'component' => 'image-upload',
+        'enum' => [
+            'migration' => 'enum',
+            'rules' => 'string',
+            'component' => 'select',
         ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | UI Component Framework
+    | Frontend Components
     |--------------------------------------------------------------------------
     |
-    | Configure the UI component framework used for frontend generation.
-    | Supported: "shadcn", "inertia"
-    |
-    */
-    'ui_framework' => 'shadcn',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Frontend Generator Settings
-    |--------------------------------------------------------------------------
-    |
-    | Settings for generating frontend components.
-    | 'enhanced' uses AI to select the most appropriate components.
-    | 'basic' uses standard components based on field types (fallback).
+    | Configure the frontend component library to use.
     |
     */
     'frontend' => [
-        'enhanced' => true, // Use enhanced AI generation (vs basic fallback)
-        'components' => 'shadcn', // Component framework: 'shadcn', 'inertia'
+        'default_library' => 'shadcn',
+        'libraries' => [
+            'shadcn' => [
+                'name' => 'Shadcn UI',
+                'description' => 'Modern React components built with Radix UI and Tailwind CSS',
+                'components' => [
+                    'text-input' => 'Input',
+                    'textarea' => 'Textarea',
+                    'number-input' => 'Input',
+                    'currency-input' => 'Input',
+                    'checkbox' => 'Checkbox',
+                    'date-picker' => 'DatePicker',
+                    'datetime-picker' => 'DateTimePicker',
+                    'email-input' => 'Input',
+                    'password-input' => 'Input',
+                    'url-input' => 'Input',
+                    'select' => 'Select',
+                    'json-editor' => 'Textarea',
+                ],
+            ],
+        ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Interactive Wizard Configuration
+    | Validation Rules
     |--------------------------------------------------------------------------
     |
-    | Configure the behavior of the interactive module generator wizard.
+    | Default validation rules for common field types.
     |
     */
-    'wizard' => [
-        'use_colorful_output' => true,
-        'show_field_previews' => true,
-        'confirm_before_generation' => true,
+    'validation' => [
+        'required_fields' => ['name', 'title', 'email'],
+        'nullable_fields' => ['description', 'notes', 'bio'],
+        'unique_fields' => ['email', 'username', 'slug'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Code Generation
+    |--------------------------------------------------------------------------
+    |
+    | Configure code generation options.
+    |
+    */
+    'generation' => [
+        'namespace' => 'App',
+        'use_soft_deletes' => true,
+        'use_timestamps' => true,
+        'use_uuid' => false,
+        'add_fillable' => true,
+        'add_casts' => true,
+        'add_relationships' => false,
+        'prefer_user_stubs' => false, // When true, user stubs are prioritized over package stubs
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Module Metadata Storage
+    |--------------------------------------------------------------------------
+    |
+    | Configure where and how module metadata is stored.
+    | The Orbit driver will store data as flat files in the specified path.
+    |
+    */
+    'storage' => [
+        'enabled' => true,
+        'driver' => 'json',  // 'json', 'md', or 'yaml'
+        'path' => 'ai-module-generator-storage',  // Default path for storage
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | File Templates
+    |--------------------------------------------------------------------------
+    |
+    | Configure which stub templates to use for different file types.
+    |
+    */
+    'stubs' => [
+        'controller' => 'controller.stub',
+        'model' => 'model.stub',
+        'migration' => 'migration.stub',
+        'request' => 'request.stub',
+        'resource' => 'resource.stub',
+        'collection' => 'collection.stub',
+        'policy' => 'policy.stub',
+        'frontend_index' => 'frontend/index.stub',
+        'frontend_create' => 'frontend/create.stub',
+        'frontend_edit' => 'frontend/edit.stub',
+        'frontend_show' => 'frontend/show.stub',
     ],
 ];

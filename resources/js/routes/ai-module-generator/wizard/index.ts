@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../wayfinder'
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::fields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:78
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:81
 * @route '/ai-module-generator/wizard/fields'
 */
 export const fields = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ fields.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::fields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:78
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:81
 * @route '/ai-module-generator/wizard/fields'
 */
 fields.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,7 +28,7 @@ fields.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::fields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:78
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:81
 * @route '/ai-module-generator/wizard/fields'
 */
 fields.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,7 +41,7 @@ fields.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::fields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:78
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:81
 * @route '/ai-module-generator/wizard/fields'
 */
 fields.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -54,7 +54,7 @@ fields.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeFields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:95
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:98
 * @route '/ai-module-generator/wizard/fields'
 */
 export const storeFields = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -72,7 +72,7 @@ storeFields.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeFields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:95
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:98
 * @route '/ai-module-generator/wizard/fields'
 */
 storeFields.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -81,7 +81,7 @@ storeFields.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) 
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeFields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:95
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:98
 * @route '/ai-module-generator/wizard/fields'
 */
 storeFields.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -94,7 +94,7 @@ storeFields.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams })
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::relationships
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:117
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:122
 * @route '/ai-module-generator/wizard/relationships'
 */
 export const relationships = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -112,7 +112,7 @@ relationships.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::relationships
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:117
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:122
 * @route '/ai-module-generator/wizard/relationships'
 */
 relationships.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -121,7 +121,7 @@ relationships.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::relationships
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:117
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:122
 * @route '/ai-module-generator/wizard/relationships'
 */
 relationships.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -134,7 +134,7 @@ relationships.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::relationships
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:117
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:122
 * @route '/ai-module-generator/wizard/relationships'
 */
 relationships.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -147,7 +147,7 @@ relationships.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams 
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeRelationships
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:134
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:139
 * @route '/ai-module-generator/wizard/relationships'
 */
 export const storeRelationships = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -165,7 +165,7 @@ storeRelationships.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeRelationships
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:134
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:139
 * @route '/ai-module-generator/wizard/relationships'
 */
 storeRelationships.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -174,7 +174,7 @@ storeRelationships.url = (options?: { query?: QueryParams, mergeQuery?: QueryPar
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeRelationships
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:134
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:139
 * @route '/ai-module-generator/wizard/relationships'
 */
 storeRelationships.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -187,7 +187,7 @@ storeRelationships.post = (options?: { query?: QueryParams, mergeQuery?: QueryPa
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::ui
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:159
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:166
 * @route '/ai-module-generator/wizard/ui'
 */
 export const ui = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -205,7 +205,7 @@ ui.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::ui
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:159
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:166
 * @route '/ai-module-generator/wizard/ui'
 */
 ui.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -214,7 +214,7 @@ ui.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::ui
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:159
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:166
 * @route '/ai-module-generator/wizard/ui'
 */
 ui.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -227,7 +227,7 @@ ui.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::ui
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:159
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:166
 * @route '/ai-module-generator/wizard/ui'
 */
 ui.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -240,7 +240,7 @@ ui.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeUi
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:176
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:183
 * @route '/ai-module-generator/wizard/ui'
 */
 export const storeUi = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -258,7 +258,7 @@ storeUi.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeUi
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:176
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:183
 * @route '/ai-module-generator/wizard/ui'
 */
 storeUi.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -267,7 +267,7 @@ storeUi.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::storeUi
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:176
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:183
 * @route '/ai-module-generator/wizard/ui'
 */
 storeUi.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -280,7 +280,7 @@ storeUi.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::review
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:229
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:254
 * @route '/ai-module-generator/wizard/review'
 */
 export const review = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -298,7 +298,7 @@ review.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::review
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:229
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:254
 * @route '/ai-module-generator/wizard/review'
 */
 review.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -307,7 +307,7 @@ review.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::review
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:229
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:254
 * @route '/ai-module-generator/wizard/review'
 */
 review.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -320,7 +320,7 @@ review.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::review
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:229
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:254
 * @route '/ai-module-generator/wizard/review'
 */
 review.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -333,7 +333,7 @@ review.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::generate
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:246
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:271
 * @route '/ai-module-generator/wizard/generate'
 */
 export const generate = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -351,7 +351,7 @@ generate.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::generate
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:246
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:271
 * @route '/ai-module-generator/wizard/generate'
 */
 generate.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -360,7 +360,7 @@ generate.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => 
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::generate
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:246
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:271
 * @route '/ai-module-generator/wizard/generate'
 */
 generate.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
