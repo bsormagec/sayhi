@@ -1,5 +1,6 @@
 import { queryParams, type QueryParams } from './../../wayfinder'
 import wizard from './wizard'
+import api from './api'
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\ModuleGeneratorController::index
 * @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/ModuleGeneratorController.php:40
@@ -556,6 +557,7 @@ const aiModuleGenerator = {
     migrateModule,
     rollbackModule,
     migrationStatus,
+    api,
 }
 
 export default aiModuleGenerator

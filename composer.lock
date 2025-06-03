@@ -269,7 +269,7 @@
             "dist": {
                 "type": "path",
                 "url": "/Users/sormagec/Projects/ai-module-generator",
-                "reference": "6870fbcb7c72988085142fb1a1eecec0a4edad01"
+                "reference": "fbeee3d23c00063d13c5565bed2de30325d804e4"
             },
             "require": {
                 "illuminate/support": "^10.0|^11.0|^12.0",
