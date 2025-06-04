@@ -66,11 +66,11 @@ export default function SearchFilter() {
     return (
         <div className="w-96">
             <div className="relative flex w-full items-center">
-                <div className="bg-background flex w-full items-center overflow-hidden rounded-md border shadow-sm">
+                <div className="bg-background flex w-full items-center overflow-hidden rounded-md border">
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-12 w-12 flex-shrink-0 rounded-none border-r">
-                                <Filter className="h-5 w-5" />
+                            <Button variant="ghost" size="icon" className="h-10 w-10 flex-shrink-0 rounded-none border-r">
+                                <Filter className="h-4 w-4" />
                                 <span className="sr-only">{t('Filter')}</span>
                             </Button>
                         </PopoverTrigger>
@@ -97,16 +97,16 @@ export default function SearchFilter() {
                         placeholder={t('Search')}
                         value={values.search}
                         onChange={(e) => handleChange('search', e.target.value)}
-                        className="min-w-0 flex-1 rounded-none border-0 px-4 py-6 text-base focus-visible:ring-0 focus-visible:ring-offset-0"
+                        className="min-w-0 flex-1 rounded-none border-0 px-3 focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                     {values.search && (
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="h-12 w-12 flex-shrink-0 rounded-none"
+                            className="h-10 w-10 flex-shrink-0 rounded-none"
                             onClick={() => handleChange('search', '')}
                         >
-                            <X className="h-5 w-5" />
+                            <X className="h-4 w-4" />
                             <span className="sr-only">{t('Clear')}</span>
                         </Button>
                     )}
