@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams, validateParameters } from './../../../../../wayfinder'
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\RelationDataController::getRelationData
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:21
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:20
 * @route '/ai-module-generator/api/relation-data/{model}/{relation?}'
 */
 export const getRelationData = (args: { model: string | number, relation?: string | number } | [model: string | number, relation: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ getRelationData.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\RelationDataController::getRelationData
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:21
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:20
 * @route '/ai-module-generator/api/relation-data/{model}/{relation?}'
 */
 getRelationData.url = (args: { model: string | number, relation?: string | number } | [model: string | number, relation: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -47,7 +47,7 @@ getRelationData.url = (args: { model: string | number, relation?: string | numbe
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\RelationDataController::getRelationData
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:21
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:20
 * @route '/ai-module-generator/api/relation-data/{model}/{relation?}'
 */
 getRelationData.get = (args: { model: string | number, relation?: string | number } | [model: string | number, relation: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -60,7 +60,7 @@ getRelationData.get = (args: { model: string | number, relation?: string | numbe
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\RelationDataController::getRelationData
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:21
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:20
 * @route '/ai-module-generator/api/relation-data/{model}/{relation?}'
 */
 getRelationData.head = (args: { model: string | number, relation?: string | number } | [model: string | number, relation: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -73,7 +73,7 @@ getRelationData.head = (args: { model: string | number, relation?: string | numb
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\RelationDataController::getModelFields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:253
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:242
 * @route '/ai-module-generator/api/model-fields/{model}'
 */
 export const getModelFields = (args: { model: string | number } | [model: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -91,7 +91,7 @@ getModelFields.definition = {
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\RelationDataController::getModelFields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:253
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:242
 * @route '/ai-module-generator/api/model-fields/{model}'
 */
 getModelFields.url = (args: { model: string | number } | [model: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -116,7 +116,7 @@ getModelFields.url = (args: { model: string | number } | [model: string | number
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\RelationDataController::getModelFields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:253
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:242
 * @route '/ai-module-generator/api/model-fields/{model}'
 */
 getModelFields.get = (args: { model: string | number } | [model: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -129,7 +129,7 @@ getModelFields.get = (args: { model: string | number } | [model: string | number
 
 /**
 * @see \Bsormagec\AiModuleGenerator\Http\Controllers\RelationDataController::getModelFields
-* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:253
+* @see Users/sormagec/Projects/ai-module-generator/src/Http/Controllers/RelationDataController.php:242
 * @route '/ai-module-generator/api/model-fields/{model}'
 */
 getModelFields.head = (args: { model: string | number } | [model: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
