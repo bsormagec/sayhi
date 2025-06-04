@@ -116,15 +116,31 @@ export default function Dashboard() {
     const getApplicationStatusBadge = (status: string) => {
         switch (status) {
             case 'approved':
-                return <Badge className="bg-green-100 text-green-800 border-green-200">Approved</Badge>;
+                return (
+                    <Badge className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-800">
+                        Approved
+                    </Badge>
+                );
             case 'rejected':
                 return <Badge variant="destructive">Rejected</Badge>;
             case 'under_review':
-                return <Badge className="bg-blue-100 text-blue-800 border-blue-200">Under Review</Badge>;
+                return (
+                    <Badge className="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800">
+                        Under Review
+                    </Badge>
+                );
             case 'interview_scheduled':
-                return <Badge className="bg-purple-100 text-purple-800 border-purple-200">Interview Scheduled</Badge>;
+                return (
+                    <Badge className="bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-800">
+                        Interview Scheduled
+                    </Badge>
+                );
             case 'pending_documents':
-                return <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">Pending Documents</Badge>;
+                return (
+                    <Badge className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-800">
+                        Pending Documents
+                    </Badge>
+                );
             default:
                 return <Badge variant="outline">{status}</Badge>;
         }
@@ -133,13 +149,29 @@ export default function Dashboard() {
     const getPerformanceBadge = (performance: string) => {
         switch (performance.toLowerCase()) {
             case 'excellent':
-                return <Badge className="bg-green-100 text-green-800 border-green-200">Excellent</Badge>;
+                return (
+                    <Badge className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-800">
+                        Excellent
+                    </Badge>
+                );
             case 'good':
-                return <Badge className="bg-blue-100 text-blue-800 border-blue-200">Good</Badge>;
+                return (
+                    <Badge className="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800">
+                        Good
+                    </Badge>
+                );
             case 'satisfactory':
-                return <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">Satisfactory</Badge>;
+                return (
+                    <Badge className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-800">
+                        Satisfactory
+                    </Badge>
+                );
             case 'needs improvement':
-                return <Badge className="bg-orange-100 text-orange-800 border-orange-200">Needs Improvement</Badge>;
+                return (
+                    <Badge className="bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-800">
+                        Needs Improvement
+                    </Badge>
+                );
             default:
                 return <Badge variant="outline">{performance}</Badge>;
         }
@@ -152,8 +184,8 @@ export default function Dashboard() {
             <div className="space-y-6">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">TA Management Dashboard</h1>
-                        <p className="text-gray-600 mt-1">Teaching Assistant Recruitment & Management System</p>
+                        <h1 className="text-3xl font-bold text-foreground">TA Management Dashboard</h1>
+                        <p className="text-muted-foreground mt-1">Teaching Assistant Recruitment & Management System</p>
                     </div>
                     <div className="flex space-x-3">
                         <Button variant="outline">Export Report</Button>
@@ -172,8 +204,10 @@ export default function Dashboard() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="text-2xl font-bold text-gray-900">{metric.value}</div>
-                                <div className={`text-xs flex items-center gap-1 ${metric.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                                <div className="text-2xl font-bold text-foreground">{metric.value}</div>
+                                <div
+                                    className={`text-xs flex items-center gap-1 ${metric.trend === 'up' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}
+                                >
                                     <span>{metric.trend === 'up' ? '↗️' : '↘️'}</span>
                                     {metric.change} from last semester
                                 </div>
@@ -188,27 +222,27 @@ export default function Dashboard() {
                         <CardTitle className="flex items-center gap-2">📊 Application Process Overview</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="h-64 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-lg flex items-center justify-center">
+                        <div className="h-64 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-950/20 dark:via-indigo-950/20 dark:to-purple-950/20 rounded-lg flex items-center justify-center">
                             <div className="text-center">
-                                <div className="text-lg font-semibold text-gray-700 mb-4">Application Pipeline</div>
+                                <div className="text-lg font-semibold text-foreground mb-4">Application Pipeline</div>
                                 <div className="flex justify-center space-x-8">
                                     <div className="text-center">
-                                        <div className="w-20 h-20 bg-blue-200 rounded-full flex items-center justify-center mb-2">
-                                            <span className="text-sm font-bold text-blue-800">247</span>
+                                        <div className="w-20 h-20 bg-blue-200 dark:bg-blue-800 rounded-full flex items-center justify-center mb-2">
+                                            <span className="text-sm font-bold text-blue-800 dark:text-blue-200">247</span>
                                         </div>
-                                        <div className="text-xs text-gray-600">Total Applications</div>
+                                        <div className="text-xs text-muted-foreground">Total Applications</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="w-20 h-20 bg-purple-200 rounded-full flex items-center justify-center mb-2">
-                                            <span className="text-sm font-bold text-purple-800">34</span>
+                                        <div className="w-20 h-20 bg-purple-200 dark:bg-purple-800 rounded-full flex items-center justify-center mb-2">
+                                            <span className="text-sm font-bold text-purple-800 dark:text-purple-200">34</span>
                                         </div>
-                                        <div className="text-xs text-gray-600">Under Review</div>
+                                        <div className="text-xs text-muted-foreground">Under Review</div>
                                     </div>
                                     <div className="text-center">
-                                        <div className="w-20 h-20 bg-green-200 rounded-full flex items-center justify-center mb-2">
-                                            <span className="text-sm font-bold text-green-800">89</span>
+                                        <div className="w-20 h-20 bg-green-200 dark:bg-green-800 rounded-full flex items-center justify-center mb-2">
+                                            <span className="text-sm font-bold text-green-800 dark:text-green-200">89</span>
                                         </div>
-                                        <div className="text-xs text-gray-600">Active TAs</div>
+                                        <div className="text-xs text-muted-foreground">Active TAs</div>
                                     </div>
                                 </div>
                             </div>
@@ -312,17 +346,26 @@ export default function Dashboard() {
                                     <TableRow key={index}>
                                         <TableCell className="font-medium">{dept.department}</TableCell>
                                         <TableCell>
-                                            <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                                            <Badge
+                                                variant="outline"
+                                                className="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800"
+                                            >
                                                 {dept.totalTAs} TAs
                                             </Badge>
                                         </TableCell>
                                         <TableCell>
-                                            <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
+                                            <Badge
+                                                variant="outline"
+                                                className="bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-800"
+                                            >
                                                 {dept.openPositions} Open
                                             </Badge>
                                         </TableCell>
                                         <TableCell>
-                                            <Badge variant="outline" className="font-mono bg-green-50 text-green-700 border-green-200">
+                                            <Badge
+                                                variant="outline"
+                                                className="font-mono bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800"
+                                            >
                                                 {dept.avgGPA}
                                             </Badge>
                                         </TableCell>
